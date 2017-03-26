@@ -1,0 +1,90 @@
+
+div img{
+  margin: 10px;
+  display: inline-block;
+  float: left;
+  width: 123px;
+  height: 234px;
+}
+
+h1 {
+  font-family: 'Noto Serif', serif;
+  color: #D09683
+}
+
+div h2 {
+  font-family: 'Noto Serif', serif;
+  color: #D09683;
+  margin: 5px;
+}
+
+#single {
+  width: 200px;
+  height: 300px;
+}
+
+#staticd2 {
+  display: block;
+  margin: 0 auto;
+  float: none;
+  width: auto;
+  height: auto;
+}
+
+div div {
+  font-family: 'Noto Serif', serif;
+  min-width: 500px;
+  min-height: 500px;
+  max-width: 500px;
+  max-height: auto;
+  vertical-align: top;
+  display: inline-block;
+  margin: 5px;
+  background-color: #73605B;
+  box-sizing: border-box;
+  padding: 10px;
+
+}
+
+body {
+  background-color: #363237;
+}
+
+div body {
+  margin: 5px;
+  width: 200px;
+  display: inline-block;
+  float: right;
+}
+
+div form{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input[type=text] {
+    font-family: 'Noto Serif', serif;
+    padding:7px;
+    border:2px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type=text]:focus {
+    border-color:#333;
+}
+
+input[type=file] {
+    font-family: 'Noto Serif', serif;
+    padding:7px;
+    border:2px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type=submit] {
+    font-family: 'Noto Serif', serif;
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    border-radius: 5px;
+}

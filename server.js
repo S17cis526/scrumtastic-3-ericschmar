@@ -8,8 +8,11 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('scrumtastic.sqlite3', function(err) {
   if(err) console.error(err);
 });
+var staticFiles = require('./lib/static')
 
 var router = new (require('./lib/route')).Router(db);
+staticFiles.loadDir('./public', router);
+
 
 router.get('/', function(req, res) {
   fs.readFile('public/index.html', function(err, body){
@@ -17,17 +20,33 @@ router.get('/', function(req, res) {
   });
 });
 
-router.get('/app.js', function(req, res) {
-  fs.readFile('public/app.js', function(err, body){
+/*
+router.get('/bundle.js', function(req, res) {
+  fs.readFile('public/bundle.js', function(err, body){
     res.end(body);
   });
 });
 
-var project = router.resource('/projects', require('./src/resource/project.js'))
+router.get('/style.css', function(req, res) {
+  fs.readFile('public/style.css', function(err, body) {
+    res.end(body)
+  })
+})
+*/
+
+var project = router.resource('/classes', require('./src/resource/classes.js'))
 
 
 var migrate = require('./lib/migrate');
 migrate(db, 'migrations', function(err){
+/*
+  fs.readFile('public/Diablo-II-icon.png', function(err, body) {
+    if(err) console.log(err)
+    db.run('INSERT INTO projects (name, description, image) VALUES (?,?,?)', ['diabloII', 'icon', body], function(err){
+      if(err) console.log(err)
+    })
+  })*/
+
 
   var server = new http.Server(function(req, res) {
     router.route(req, res);
