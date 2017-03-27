@@ -36,6 +36,7 @@ function list(req, res, db) {
   * Creates a new priject and add it to the database
   */
 function create(req, res, db) {
+  console.log(req.body)
     fs.writeFile('./public/images/' + req.body.image.filename, req.body.image.data, function(err) {
         if (err) {
             console.error(err);

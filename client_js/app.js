@@ -16,13 +16,14 @@ function clearContent() {
 function insertclasses(classes) {
     var classDiv = $('div.container')
     classDiv.append(createNewClassDiv());
+    addSubmitCallback()
     classes.forEach(function(c) {
         classDiv.append(createClassCard(c));
     });
 }
 
 function createNewClassDiv(){
-  return $('<div id="newClass" style="display: none;"><h1>Submit a New Class</p><form id="newClass" method="POST" enctype="multipart/form-data"><input type="text" name="class" placeholder="Class Name"><input type="text" name="description" placeholder="Class Metadata"><input type="file" name="Image file"><input type="submit" value="Submit Class"></form></div>');
+  return $('<div id="newClassDiv" style="display: none;"><h1>Submit a New Class</p><form id="newClass" method="POST" enctype="multipart/form-data"><input type="text" name="class" placeholder="Class Name"><input type="text" name="description" placeholder="Class Metadata"><input type="file" name="image"><input type="submit" value="Submit Class"></form></div>');
 }
 
 function clearAndLoad(id) {
@@ -50,15 +51,18 @@ function createClassCard(c) {
     return div;
 }
 
-$("#newClass").submit(function() {
-    var formData = new FormData($(this)[0]);
+function addSubmitCallback(){
+  $("#newClass").submit(function() {
+      var formData = new FormData($(this)[0]);
 
-    api.postNewClass(formData, function(response){
-      console.log(response);
-    });
+      api.postNewClass(formData, function(response){
+        console.log(response);
+        clearAndLoadAll()
+      });
+      return false;
+  });
+}
 
-    return false;
-});
 
 clearAndLoadAll();
 $("#bannerImg").click(function() {
@@ -66,5 +70,5 @@ $("#bannerImg").click(function() {
 })
 
 $("#button").click(function(){
-  $("#newClass").show()
+  $("#newClassDiv").show()
 })
