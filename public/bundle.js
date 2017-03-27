@@ -48,14 +48,14 @@ function postNewClass(form, callback) {
 var api = require('./api.js');
 
 
-function clearAndLoadAll() {
-    clearContent();
+function redraw() {
+    clearAll();
     api.getclasses(function(classes) {
         insertclasses(classes);
     });
 }
 
-function clearContent() {
+function clearAll() {
     $('div.container').empty();
 }
 
@@ -74,7 +74,7 @@ function createNewClassDiv(){
 }
 
 function clearAndLoad(id) {
-    clearContent();
+    clearAll();
     api.getClassByID(id, function(c) {
         var classDiv = $('div.container');
         var html = '<div><h2>' + c.name + '</h2><img id="detailImg" src="' + c.image + '" alt="' + c.name + '">';
@@ -104,16 +104,16 @@ function addSubmitCallback(){
 
       api.postNewClass(formData, function(response){
         console.log(response);
-        clearAndLoadAll()
+        redraw()
       });
       return false;
   });
 }
 
 
-clearAndLoadAll();
+redraw();
 $("#bannerImg").click(function() {
-    clearAndLoadAll();
+    redraw();
 })
 
 $("#button").click(function(){

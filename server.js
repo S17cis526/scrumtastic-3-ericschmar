@@ -20,19 +20,6 @@ router.get('/', function(req, res) {
   });
 });
 
-/*
-router.get('/bundle.js', function(req, res) {
-  fs.readFile('public/bundle.js', function(err, body){
-    res.end(body);
-  });
-});
-
-router.get('/style.css', function(req, res) {
-  fs.readFile('public/style.css', function(err, body) {
-    res.end(body)
-  })
-})
-*/
 
 var project = router.resource('/classes', require('./src/resource/classes.js'))
 
